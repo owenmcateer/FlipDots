@@ -1,0 +1,17 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OSX
+.DS_Store
+
+# Dependency directories
+node_modules/
+
+# dotenv environment variables file
+.env
+.env.test
