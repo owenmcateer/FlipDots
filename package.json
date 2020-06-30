@@ -1,0 +1,26 @@
+{
+  "name": "flipdots",
+  "version": "1.0.0",
+  "description": "A NodeJS script to control one or more FlipDot displays.",
+  "author": "Owen McAteer",
+  "main": "FlipDots.js",
+  "dependencies": {
+    "serialport": "^9.0.0",
+    "ws": "^7.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:owenmcateer/FlipDots.git"
+  },
+  "keywords": [
+    "FlipDots",
+    "Flip discs",
+    "Flip Dot display",
+    "display controller"
+  ],
+  "license": "gpl-3.0",
+  "bugs": {
+    "url": "https://github.com/owenmcateer/FlipDots/issues"
+  },
+  "homepage": "https://github.com/owenmcateer/FlipDots#readme"
+}
