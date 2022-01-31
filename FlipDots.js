@@ -8,7 +8,7 @@
  * it connected to a computer.
  * This script will accept any image array buffer over WebSockets, desaturate
  * and scale to B/W, convert to FlipDot data and push out over USB.
- * 
+ *
  * Usage
  * 1) Run `node install`
  * 2) Run `node FlipDots.js` and find your USB-to-RS485 adaptor port address.
@@ -21,7 +21,7 @@
  * FlipDot DIP pin setup.
  * For more help see:
  * https://github.com/owenmcateer/FlipDots
- * 
+ *
  * Baud-rate pins (3-pin DIP)
  * Value | ON  | Speed
  * ------|-----|--------
