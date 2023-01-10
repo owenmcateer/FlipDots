@@ -90,7 +90,7 @@ This Git repo script will accept any image array buffer over WebSockets, desatur
 To make this even easier you can use my [Canvas Cast](https://github.com/owenmcateer/canvas-cast) program to easily stream any HTML canvas over WebSockets to the FlipDot display.
 
 **Usage**  
-1) Run `node install`
+1) Run `npm install`
 2) Run `node FlipDots.js` and find your USB-to-RS485 adaptor port address.
 3) Open *FlipDots.js* and in config, enter this port address
 4) Still in *FlipDops.js* edit your panel settings (size & IDs)
