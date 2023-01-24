@@ -20,24 +20,37 @@ void ui_render() {
   
   image(virtualDisplay, 900, 400, virtualDisplay.width * 3, virtualDisplay.height * 3);
   
-  
-  // Network adapters
+  // Casting mode
   textSize(13);
   fill(255);
-  text("Network adapters:", 900, 500);
-  for (int i = 0; i < adapters.length; i++) {
-    fill(255);
-    text(adapters[i], 915, 520 + i * 20);
-
-    fill(212, 15, 15);
-    try {
-      if (clients[i].ip() != null) {
-        fill(18, 222, 45);
-      }
-    } catch(NullPointerException e) {}
-    
-    ellipse(906, 515 + i * 20, 7, 7);
-    fill(0);
+  // Network adapters
+  if (castOver == 1) {
+    text("Casting mode: ETH:", 900, 500);
+    for (int i = 0; i < netAdapters.length; i++) {
+      fill(255);
+      text(netAdapters[i], 915, 520 + i * 20);
+  
+      fill(212, 15, 15);
+      try {
+        if (adaptersNet[i].ip() != null) {
+          fill(18, 222, 45);
+        }
+      } catch(NullPointerException e) {}
+      
+      ellipse(906, 515 + i * 20, 7, 7);
+      fill(0);
+    }
+  }
+  else if (castOver == 2) {
+    text("Casting mode: USB:", 900, 500);
+    for (int i = 0; i < serialAdapters.length; i++) {
+      fill(255);
+      text(serialAdapters[i], 915, 520 + i * 20);
+ 
+      fill(18, 222, 45);
+      ellipse(906, 515 + i * 20, 7, 7);
+      fill(0);
+    }
   }
 }
 

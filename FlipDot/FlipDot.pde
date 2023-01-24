@@ -16,7 +16,7 @@ void setup() {
   ui_setup();
   
   // Scene setup
-  crypto_ticker_setup();
+  //crypto_ticker_setup();
 }
 
 
@@ -36,7 +36,6 @@ void draw() {
   virtual3D.endDraw();
   // End 3D test
   
-
   // Between beginDraw/endDraw you can draw whatever you want to virtualDisplay(PGraphics)
   virtualDisplay.beginDraw();
   virtualDisplay.background(0);

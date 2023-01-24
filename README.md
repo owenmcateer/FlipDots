@@ -1,8 +1,12 @@
-# FlipDots
+# FlipDot display
 
-FlipDot is a kinetic display I use for interactive art and animations. This repo contains all the information and code to set one up and get it connected to a computer.
+This repo contains a [Processing](https://processing.org/) sketch to control FlipDot panels from [AlfaZeta](https://flipdots.com). It uses a virtual display you can draw and animate on that then gets cast to your FlipDot display panels.
 
-This script will accept any image array buffer over WebSockets, desaturate & scale to B/W, convert to FlipDot data and push out over USB.
+*Note:* if you don't have a FlipDot display you can still use this software as a FlipDot simulator.
+
+- For the JavaScript version see [CastCanvas](./CastCanvas/)
+- For the FlipDigit library [see this repo](https://github.com/owenmcateer/FlipDigits)
+
 
 ## What are FlipDot displays?
 
@@ -10,89 +14,116 @@ Flip-dots or Flip-disc, are made of small disks with a permanent magnetic that p
 
 The AlfaZeta XY5 FlipDot display includes its own controller board that communicates over a RS485 serial connection using its own protocol. This repo simplifies connecting and streaming images to the FlipDot display.
 
-
-## FlipDots in action
-[![Motus Art FlipDot](./docs/FlipDot-Video.png)](https://www.instagram.com/p/CCBpNmXCr6o/)
-
-## Requirements
-- [AlfaZeta](https://flipdots.com/) FlipDot display
-- Power supply 24V 1A
-- USB-to-RS485 adaptor 
-- RJ11 cable / wire
+![Video of FlipDots](./assets/FlipDot.mp4)
 
 
-## Quick start, I can't wait!
-Flip pin 8 of the DIP switch on, connect power and enjoy demo mode.
+## Hardware requirements
 
-## Wiring
-![FlipDot controller](docs/FlipDot-controller.png)
+*Remember if you don't have a FlipDot display you can still use this software as a FlipDot simulator.*
+
+- FlipDot panel from [AlfaZeta](https://flipdots.com)
+- 24V PSU (1A per panel)
+- RS285 converter
+- - ETH: [ETH-UKW485SR140](https://www.sklep.uk-system.pl/konwertery-eth-ukw485sr140-z-4-portami-szeregowymi-rs485-p-41.html) (best for high framerates)
+- - ETH: [Waveshare](https://www.waveshare.com/product/iot-communication/wired-comm-converter/ethernet-to-rs232-rs485.htm)
+- - ETH: [PUSR](https://www.pusr.com/products/serial-to-ethernet-converters.html)
+- - USB RS485 [Amazon](https://www.amazon.com/DZS-Elec-Converter-Communication-Centralized/dp/B07CMY1DGK/), [Aliexpress](https://www.aliexpress.us/item/3256802833469866.html)
+- Software: [Processing 4](https://processing.org/download)
+
+
+## Setup
+
 Each 28x14 panel is made up of two 7x28 panels on one board, each with their controller we need to daisy chain together.  
 **!SAFETY PRECAUTION!** If you don't know what you're doing, ask for help. 24V might not kill you but it will hurt and break your equipment.
 
-### Step 1: DIP switch setup
-Each controller has two DIP switches that need to be set. **3-pin Baud-rate** and **8-pin Address**
+### 1) Wiring  
+
+![FlipDot control board](./assets/FlipDot-controller.png)
+
+- Connect 24V power supply to the 23V DC in screw terminals
+- Connect RS485 +/- with a JR11 plug or the screw terminals
+
+### 2) DIP switches
+
+Each controller has two DIP switches that need to be set. **3-pin Baud-rate** and **8-pin Panel address**
 
 ![FlipDot DIP pins](docs/DIP-pins.png)
 
-**Baud-rate (3-pin DIP)**  
-Communication transfer rate is set as follows. For my setup I went with 19200 ↓↓↑ as I found 9600 too slow to handle 20fps.
-```
-Value | ON  | Speed
-------|-----|--------
-  0   | ↓↓↓ | N/A
-  1   | ↑↓↓ | N/A
-  2   | ↓↑↓ | N/A
-  3   | ↑↑↓ | 9600
-  4   | ↓↓↑ | 19200
-  5   | ↑↓↑ | 38400
-  6   | ↓↑↑ | 57600
-  7   | ↑↑↑ | 9600
-------|-----|--------
-      | OFF |
-```
+#### Baud-rate (3-pin DIP)
 
-**Address (8-pin DIP)**  
+Communication transfer rate is set as follows. For my setup I went with the fastest value of 57600 ↓↑↑ as I found 9600 too slow to handle 20fps.
+
+| Value | ON  | Baud rate|
+|------|-----|--------|
+|  0   | ↓↓↓ | N/A|
+|  1   | ↑↓↓ | N/A|
+|  2   | ↓↑↓ | N/A|
+|  3   | ↑↑↓ | 9600|
+|  4   | ↓↓↑ | 19200|
+|  5   | ↑↓↑ | 38400|
+|  6   | ↓↑↑ | 57600|
+|  7   | ↑↑↑ | 9600|
+|      | OFF ||
+
+#### Address (8-pin DIP)
+
 This is the address ID used when pushing out the image data, each panel listens for its data.
-```
-Pins | Description
------|--------------
- 0-5 | Address in binary code (natural)
-  6  | Magnetising time: OFF: 500μs(default), ON: 450μs
-  7  | Test mode: ON/OFF. OFF = normal operation
------|--------------
-```
+
+| Pins | Description|
+|-----|--------------|
+| 0-5 | Address in binary code (natural)|
+|  6  | Magnetising time: OFF: 500μs(default), ON: 450μs|
+|  7  | Test mode: ON/OFF. OFF = normal operation|
+
 *Note: Reducing the magnetising time to 450μs will flip the dots faster but runs the risk of them not flipping at all.*
 
-**My settings:**
-```
-↓↓↑ | ↑↓↓↓↓↓↓↓ = Baud:19200 | ID: 1
-↓↓↑ | ↓↑↓↓↓↓↓↓ = Baud:19200 | ID: 2
-```
+### 3) Serial data
 
-### Step 2: Wiring
+To send frame data from your computer to the display you can do so over ETH or USB. For small display USB is fine but larger display will require an ETH solution.  
+See suggested serial products above.
 
-**Power**  
-Get a decent 24V DC power supply with at least 1A for a 28x14 display. See controller diagram above to connect VCC/GND.
+#### ETH convertor
 
-**Serial data**  
-Plug a RJ11 cable into J1(IN) / J2(OUT).  
-Or if like me you don't have a RJ11 cable, twist two wires together and connect to the **J3** screw terminals.
+**PC > ETH > ETH-RS485 convertor > FlipDot panels**
 
-The other end of the serial data cable will connect to your USB-to-RS485 adaptor and then into your computer.
+For an ETH solution set the following settings in [config.pde](./FlipDot/config.pde)  
+Set `castOver` to `1`  
+List all ETH convertor IP addresses and port numbers in `netAdapters`
 
-## Communicating
+#### USB convertor
 
-Data is sent to the FlipDots over RS485 serial connection. Each byte of data sets 7 dots in a single column on/off. Running from bottom to top, left to right. See the example below.   
-![FlipDot controller](docs/Binary.png)
+**PC > USB-RS485 convertor > FlipDot panels**
 
-This Git repo script will accept any image array buffer over WebSockets, desaturate & scale to B/W, convert to FlipDot data and push out over USB.
+For an USB solution set the following settings in [config.pde](./FlipDot/config.pde)  
+Set `castOver` to `2`  
+List all USB convertor COMs port address and baud rate `serialAdapters`
 
-To make this even easier you can use my [Canvas Cast](https://github.com/owenmcateer/canvas-cast) program to easily stream any HTML canvas over WebSockets to the FlipDot display.
+### 4) Processing
 
-**Usage**  
-1) Run `npm install`
-2) Run `node FlipDots.js` and find your USB-to-RS485 adaptor port address.
-3) Open *FlipDots.js* and in config, enter this port address
-4) Still in *FlipDops.js* edit your panel settings (size & IDs)
-5) Again run `node FlipDots.js` and look for "Serial port opened and ready!"
-6) Now stream image data from [Canvas Cast](https://github.com/owenmcateer/canvas-cast)
+Install [Processing 4](https://processing.org/download) for your system and launch [FlipDot/FlipDot.pde](./FlipDot/FlipDot.pde)
+
+**[config.pde](./FlipDot/config.pde)**  
+Make sure you have set your convertor type as shown above. 
+
+Set `config_cast` to `true` to cast data.
+Set `config_canvasW` to the total pixel width of you display.
+Set `config_canvasH` to the total pixel height of you display.
+
+
+Next set the FlipDot panels and display settings [config.pde](./FlipDot/config.pde). For a Single 28x14 panel you can leave config.pde as it is.  
+Add a config line for each FlipDot panel you have:  
+`panels[0] = new Panel(0, 1, 0, 0);`
+1) Adapter ID (see net/serialAdapters)
+2) Panel ID (set on the 3-pin DIP switch)
+3) X-position in total display
+4) Y-position in total display
+
+Finally set the number of panels you have in the following line: `Panel[] panels = new Panel[2];`
+
+See [config.pde](./FlipDot/config.pde) for more example and layouts.
+
+### 5) Coding animations
+
+Now you can draw and animation whatever you want! Everything gets drawn to `virtualDisplay`, I recommend looking at [example_anim.pde](./FlipDot/example_anim.pde) and [example_blips.pde](./FlipDot/example_blips.pde) for some example on coding animations.
+
+Don't forget to share your creations with me @motus_art on [IG](https://instagram.com/motus_art)/[TW](https://twitter.com/motus_art)
