@@ -14,8 +14,7 @@ Flip-dots or Flip-disc, are made of small disks with a permanent magnetic that p
 
 The AlfaZeta XY5 FlipDot display includes its own controller board that communicates over a RS485 serial connection using its own protocol. This repo simplifies connecting and streaming images to the FlipDot display.
 
-![Video of FlipDots](./assets/FlipDot.mp4)
-
+https://user-images.githubusercontent.com/1763300/214339655-2efb0460-cefd-432a-bd86-d43668057a87.mp4
 
 ## Hardware requirements
 
