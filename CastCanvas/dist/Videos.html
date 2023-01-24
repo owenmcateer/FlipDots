@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvas Cast (Serial)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/owenmcateer/canvas-cast/dist/App.css" rel="stylesheet">
+
+
+  </head>
+<body>
+<div class="wsBar">
+  <div class="brightness">
+    Matrix brightness:
+    <small>0%</small>
+    <input id="matrix-brightness" type="range" min="0" max="255" step="1" value="127">
+    <small>100%</small>
+  </div>
+
+  <h4><a href="https://github.com/owenmcateer/canvas-cast" target="_blank">Canvas Cast</a></h4>
+  <div class="status"></div>
+  <div class="statusTxt"></div>
+  <div class="statusIP"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/owenmcateer/canvas-cast/dist/App.js"></script>
+<script>/**
+ * FlipDot shapes
+ */
+var canvasSize = 540;
+var flipDotCols = 28;
+var flipDotRows = 28;
+var size = canvasSize / (flipDotCols + 1);
+var virtualCanvas = new Array(flipDotCols * flipDotRows).fill(0);
+var videoFile;
+var frame = 0; // CastCanvas Config
+
+var matrix = {
+  // Node Serial server
+  ip: 'localhost:8081',
+  // Matrix pixel size
+  width: 28,
+  height: 28,
+  // Context type (2d/webgl)
+  type: '2d',
+  // Custom pixel map
+  customMap: gFxMap()
+}; // Start WS Matrix
+
+canvasCast.init(matrix); // Preload
+
+function preload() {
+  var videoDataFile = '/WaterSim-Side.0deafea2.js';
+  videoFile = JSON.parse(loadStrings(videoDataFile));
+} // Setup
+
+
+function setup() {
+  createCanvas(canvasSize, canvasSize);
+  frameRate(24);
+  pixelDensity(1);
+} // Draw tick
+
+
+function draw() {
+  // background(0);
+  // Pipe video frame into virtual canvas
+  virtualCanvas = videoFile[frame]; // Video frame timer
+
+  frame++;
+
+  if (frame >= videoFile.length) {
+    frame = 0;
+    console.log('Looped');
+  } // Simulate flipdot display
+
+
+  background(220);
+  virtualCanvas.forEach(function (p, i) {
+    stroke(39);
+    strokeWeight(1);
+    fill(p * 255);
+    ellipse(i % flipDotCols * size + size, floor(i / flipDotCols) * size + size, size);
+  }); // Cast data
+
+  var p5canvas = document.getElementById('defaultCanvas0');
+  canvasCast.cast(p5canvas);
+}
+
+function virtualCanvasSet(x, y, value) {
+  if (x < 0 || x >= flipDotCols || y < 0 || y >= flipDotRows) return;
+  var index = x + y * flipDotCols;
+  virtualCanvas[index] = value;
+}
+/**
+ * Custom pixel mapper.
+ * @param {Int} Matrix size
+ * @return {array} Array of pixels with X&Y coordinates
+ */
+
+
+function gFxMap() {
+  // gFx map
+  var pixelMap = []; // FlipDot grid
+
+  for (var y = 0; y < flipDotRows; y++) {
+    for (var x = 0; x < flipDotCols; x++) {
+      // Add pixel position
+      pixelMap.push({
+        x: Math.round(x * size + size),
+        y: Math.round(y * size + size)
+      });
+    }
+  }
+
+  return pixelMap;
+}</script>
+</body>
+</html>
