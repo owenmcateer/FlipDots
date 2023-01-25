@@ -105,9 +105,6 @@ Install [Processing 4](https://processing.org/download) for your system and laun
 Make sure you have set your convertor type as shown above. 
 
 Set `config_cast` to `true` to cast data.
-Set `config_canvasW` to the total pixel width of you display.
-Set `config_canvasH` to the total pixel height of you display.
-
 
 Next set the FlipDot panels and display settings [config.pde](./FlipDot/config.pde). For a Single 28x14 panel you can leave config.pde as it is.  
 Add a config line for each FlipDot panel you have:  

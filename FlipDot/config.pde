@@ -1,14 +1,53 @@
-// Config
+/**
+ * Config
+ *
+ * There are a few settings here you need to set here.
+ * 
+ * Boolean `config_cast`
+ *   true  = Cast data to display
+ *   false = Run as a simulator
+ *   
+ * Int `castOver`
+ *   1 = ETH network
+ *   2 = USB serial
+ *
+ * RS485 converter devices
+ * Use their a ETH or USB serial device
+ * ETH use {netAdapters}
+ *   IP address:port
+ * USB use {serialAdapters}
+ *   COM port:baud rate
+ *
+ * Int `config_fps`
+ *   Change if you want, I have found 30 fps work best for most displays.
+ *
+ * Bollean `config_video_sync`
+ *   This setting tells the panels to wait until all data has been transmitted before refreshing. Good for syncing large displays
+ * 
+ * Panel[] panels = new Panel[4];
+ *   Set thei array size to the number of panels you have in your display.
+ * 
+ * createPanels()
+ *   Create a new panel for each one you have in your display  
+ *   `panels[0] = new Panel(0, 1, 0, 0);`
+ *     1) Adapter ID (see net/serialAdapters)
+ *     2) Panel ID (set on the 3-pin DIP switch)
+ *     3) X-position in total display
+ *     4) Y-position in total display
+ */
 boolean config_cast = false;
 int config_fps = 30;
-int config_canvasW = 28;
-int config_canvasH = 14;
+int config_canvasW;
+int config_canvasH;
 boolean config_video_sync = true;
 
 // Network settings
-// 1 = ETH network
-// 2 = USB serial
+//   1 = ETH network
+//   2 = USB serial
 int castOver = 1;
+
+// Panels
+Panel[] panels = new Panel[2];
 
 // Network device
 // IP address:port
@@ -29,17 +68,15 @@ String[] serialAdapters = {
 Client[] adaptersNet = new Client[netAdapters.length];
 Serial[] adaptersSerial = new Serial[serialAdapters.length];
 
-// Panels
-Panel[] panels = new Panel[2];
-
 // Assets
 PFont FlipDotFont;
 
 // UI
 int border = 40;
 
-
-// Config setup
+/**
+ * Config setup
+ */
 void config_setup() {
   // Load assets
 
@@ -54,11 +91,23 @@ void config_setup() {
 }
 
 
+/**
+ * Create FlipDot panels
+ *
+ * List all panels you have in your display.  
+ * `panels[0] = new Panel(0, 1, 0, 0);`
+ *  1) Adapter ID (see net/serialAdapters)
+ *  2) Panel ID (set on the 3-pin DIP switch)
+ *  3) X-position in total display
+ *  4) Y-position in total display
+ *
+ * You can use the example layouts below or create your own.
+ */
 void createPanels() {
   // Single 28x14 panel
   panels[0] = new Panel(0, 1, 0, 0);
   panels[1] = new Panel(0, 2, 0, 7);
-  
+
   /**
    * Square display
    * Made up of 4 stacked panels
@@ -77,35 +126,38 @@ void createPanels() {
   panels[1]  = new Panel(0, 2, 0,  7);
   panels[2]  = new Panel(0, 3, 0,  14);
   panels[3]  = new Panel(0, 4, 0,  21);
+  
   panels[4]  = new Panel(1, 1, 28, 0);
   panels[5]  = new Panel(1, 2, 28, 7);
   panels[6]  = new Panel(1, 3, 28, 14);
   panels[7]  = new Panel(1, 4, 28, 21);
+  
   panels[8]  = new Panel(2, 1, 0,  28);
   panels[9]  = new Panel(2, 2, 0,  35);
   panels[10] = new Panel(2, 3, 0,  42);
   panels[11] = new Panel(2, 4, 0,  49);
-  panels[13] = new Panel(3, 1, 28, 28);
-  panels[14] = new Panel(3, 2, 28, 35);
-  panels[15] = new Panel(3, 3, 28, 42);
-  panels[16] = new Panel(3, 4, 28, 49);
+  
+  panels[12] = new Panel(3, 1, 28, 28);
+  panels[13] = new Panel(3, 2, 28, 35);
+  panels[14] = new Panel(3, 3, 28, 42);
+  panels[15] = new Panel(3, 4, 28, 49);
    */
-   
+
   /**
    * Waterfall
    *
-  panels[0] = new Panel(0, 1, 0, 0);
-  panels[1] = new Panel(0, 2, 0, 7);
-  panels[2] = new Panel(0, 3, 0, 14);
-  panels[3] = new Panel(0, 4, 0, 21);
+  panels[0]  = new Panel(0, 1, 0,  0);
+  panels[1]  = new Panel(0, 2, 0,  7);
+  panels[2]  = new Panel(0, 3, 0,  14);
+  panels[3]  = new Panel(0, 4, 0,  21);
 
-  panels[4] = new Panel(1, 1, 28, 28);
-  panels[5] = new Panel(1, 2, 28, 35);
-  panels[6] = new Panel(1, 3, 28, 42);
-  panels[7] = new Panel(1, 4, 28, 49);
+  panels[4]  = new Panel(1, 1, 28, 28);
+  panels[5]  = new Panel(1, 2, 28, 35);
+  panels[6]  = new Panel(1, 3, 28, 42);
+  panels[7]  = new Panel(1, 4, 28, 49);
 
-  panels[8] = new Panel(2, 1, 56, 56);
-  panels[9] = new Panel(2, 2, 56, 63);
+  panels[8]  = new Panel(2, 1, 56, 56);
+  panels[9]  = new Panel(2, 2, 56, 63);
   panels[10] = new Panel(2, 3, 56, 70);
   panels[11] = new Panel(2, 4, 56, 77);
 
@@ -118,18 +170,18 @@ void createPanels() {
   /**
    * Cross
    *
-  panels[0] = new Panel(0, 1, 28, 0);
-  panels[1] = new Panel(0, 2, 28, 7);
-  panels[2] = new Panel(0, 3, 28, 14);
-  panels[3] = new Panel(0, 4, 28, 21);
+  panels[0]  = new Panel(0, 1, 28, 0);
+  panels[1]  = new Panel(0, 2, 28, 7);
+  panels[2]  = new Panel(0, 3, 28, 14);
+  panels[3]  = new Panel(0, 4, 28, 21);
 
-  panels[4] = new Panel(1, 1, 0, 28);
-  panels[5] = new Panel(1, 2, 0, 35);
-  panels[6] = new Panel(1, 3, 0, 42);
-  panels[7] = new Panel(1, 4, 0, 49);
+  panels[4]  = new Panel(1, 1, 0,  28);
+  panels[5]  = new Panel(1, 2, 0,  35);
+  panels[6]  = new Panel(1, 3, 0,  42);
+  panels[7]  = new Panel(1, 4, 0,  49);
 
-  panels[8] = new Panel(2, 1, 56, 28);
-  panels[9] = new Panel(2, 2, 56, 35);
+  panels[8]  = new Panel(2, 1, 56, 28);
+  panels[9]  = new Panel(2, 2, 56, 35);
   panels[10] = new Panel(2, 3, 56, 42);
   panels[11] = new Panel(2, 4, 56, 49);
 
@@ -143,4 +195,14 @@ void createPanels() {
   panels[18] = new Panel(2, 5, 28, 42);
   panels[19] = new Panel(3, 5, 28, 49);
   */
+
+  // Find largest width value in panels above
+  for (int i = 0; i < panels.length; i++) {
+    if (panels[i].x + 28 > config_canvasW) {
+      config_canvasW = panels[i].x + 28;
+    }
+    if (panels[i].y + 7 > config_canvasH) {
+      config_canvasH = panels[i].y + 7;
+    }
+  }
 }
