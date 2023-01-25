@@ -1,8 +1,7 @@
-# FlipDots
-
-FlipDot is a kinetic display I use for interactive art and animations. This repo contains all the information and code to set one up and get it connected to a computer.
+# FlipDots CastCanvas
 
 This script will accept any image array buffer over WebSockets, desaturate & scale to B/W, convert to FlipDot data and push out over USB.
+
 
 ## What are FlipDot displays?
 
@@ -14,6 +13,7 @@ The AlfaZeta XY5 FlipDot display includes its own controller board that communic
 ## FlipDots in action
 [![Motus Art FlipDot](./docs/FlipDot-Video.png)](https://www.instagram.com/p/CCBpNmXCr6o/)
 
+
 ## Requirements
 - [AlfaZeta](https://flipdots.com/) FlipDot display
 - Power supply 24V 1A
@@ -24,61 +24,11 @@ The AlfaZeta XY5 FlipDot display includes its own controller board that communic
 ## Quick start, I can't wait!
 Flip pin 8 of the DIP switch on, connect power and enjoy demo mode.
 
+
 ## Wiring
-![FlipDot controller](docs/FlipDot-controller.png)
-Each 28x14 panel is made up of two 7x28 panels on one board, each with their controller we need to daisy chain together.  
-**!SAFETY PRECAUTION!** If you don't know what you're doing, ask for help. 24V might not kill you but it will hurt and break your equipment.
 
-### Step 1: DIP switch setup
-Each controller has two DIP switches that need to be set. **3-pin Baud-rate** and **8-pin Address**
+See https://github.com/owenmcateer/FlipDots
 
-![FlipDot DIP pins](docs/DIP-pins.png)
-
-**Baud-rate (3-pin DIP)**  
-Communication transfer rate is set as follows. For my setup I went with 19200 ↓↓↑ as I found 9600 too slow to handle 20fps.
-```
-Value | ON  | Speed
-------|-----|--------
-  0   | ↓↓↓ | N/A
-  1   | ↑↓↓ | N/A
-  2   | ↓↑↓ | N/A
-  3   | ↑↑↓ | 9600
-  4   | ↓↓↑ | 19200
-  5   | ↑↓↑ | 38400
-  6   | ↓↑↑ | 57600
-  7   | ↑↑↑ | 9600
-------|-----|--------
-      | OFF |
-```
-
-**Address (8-pin DIP)**  
-This is the address ID used when pushing out the image data, each panel listens for its data.
-```
-Pins | Description
------|--------------
- 0-5 | Address in binary code (natural)
-  6  | Magnetising time: OFF: 500μs(default), ON: 450μs
-  7  | Test mode: ON/OFF. OFF = normal operation
------|--------------
-```
-*Note: Reducing the magnetising time to 450μs will flip the dots faster but runs the risk of them not flipping at all.*
-
-**My settings:**
-```
-↓↓↑ | ↑↓↓↓↓↓↓↓ = Baud:19200 | ID: 1
-↓↓↑ | ↓↑↓↓↓↓↓↓ = Baud:19200 | ID: 2
-```
-
-### Step 2: Wiring
-
-**Power**  
-Get a decent 24V DC power supply with at least 1A for a 28x14 display. See controller diagram above to connect VCC/GND.
-
-**Serial data**  
-Plug a RJ11 cable into J1(IN) / J2(OUT).  
-Or if like me you don't have a RJ11 cable, twist two wires together and connect to the **J3** screw terminals.
-
-The other end of the serial data cable will connect to your USB-to-RS485 adaptor and then into your computer.
 
 ## Communicating
 
