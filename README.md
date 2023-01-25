@@ -7,6 +7,7 @@ This repo contains a [Processing](https://processing.org/) sketch to control Fli
 - For the JavaScript version see [CastCanvas](./CastCanvas/)
 - For the FlipDigit library [see this repo](https://github.com/owenmcateer/FlipDigits)
 
+https://user-images.githubusercontent.com/1763300/214524873-d32401c9-916a-4d84-ae42-95b464082fdb.mp4
 
 ## What are FlipDot displays?
 
@@ -14,7 +15,6 @@ Flip-dots or Flip-disc, are made of small disks with a permanent magnetic that p
 
 The AlfaZeta XY5 FlipDot display includes its own controller board that communicates over a RS485 serial connection using its own protocol. This repo simplifies connecting and streaming images to the FlipDot display.
 
-https://user-images.githubusercontent.com/1763300/214339655-2efb0460-cefd-432a-bd86-d43668057a87.mp4
 
 ## Hardware requirements
 
@@ -123,3 +123,6 @@ See [config.pde](./FlipDot/config.pde) for more example and layouts.
 Now you can draw and animation whatever you want! Everything gets drawn to `virtualDisplay`, I recommend looking at [example_anim.pde](./FlipDot/example_anim.pde) and [example_blips.pde](./FlipDot/example_blips.pde) for some example on coding animations.
 
 Don't forget to share your creations with me @motus_art on [IG](https://instagram.com/motus_art)/[TW](https://twitter.com/motus_art)
+
+
+https://user-images.githubusercontent.com/1763300/214339655-2efb0460-cefd-432a-bd86-d43668057a87.mp4
