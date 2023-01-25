@@ -11,7 +11,7 @@ The AlfaZeta XY5 FlipDot display includes its own controller board that communic
 
 
 ## FlipDots in action
-[![Motus Art FlipDot](./docs/FlipDot-Video.png)](https://www.instagram.com/p/CCBpNmXCr6o/)
+[![Motus Art FlipDot](../assets/FlipDot-Video.png)](https://www.instagram.com/p/CCBpNmXCr6o/)
 
 
 ## Requirements
@@ -33,7 +33,7 @@ See https://github.com/owenmcateer/FlipDots
 ## Communicating
 
 Data is sent to the FlipDots over RS485 serial connection. Each byte of data sets 7 dots in a single column on/off. Running from bottom to top, left to right. See the example below.   
-![FlipDot controller](docs/Binary.png)
+![FlipDot controller](../assets/Binary.png)
 
 This Git repo script will accept any image array buffer over WebSockets, desaturate & scale to B/W, convert to FlipDot data and push out over USB.
 
