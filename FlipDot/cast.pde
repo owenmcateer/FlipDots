@@ -1,16 +1,16 @@
 import processing.net.*;
 import processing.serial.*;
 
-
 /**
  * Setup casting
  *
- * - If casting is enabled, connected to the ETH-Serial converters.
+ * If casting is enabled, connected to the ETH-Serial converters.
+ * Uncomment `printArray(Serial.list());` to list USB devices.
  */
 void cast_setup() {
   // Cast data
   if (!config_cast) return;
-  
+
   // Cast over Network
   if (castOver == 1) {
     // Connect to each network adapter
@@ -21,8 +21,9 @@ void cast_setup() {
   }
   // Cast over USB Serial device
   else if (castOver == 2) {
-    // List all the available serial ports:
-    //printArray(Serial.list());
+    // Uncomment List all the available serial ports:
+    // printArray(Serial.list());
+
     // Connect to each USB serial device
     for (int i = 0; i < serialAdapters.length; i++) {
       String[] adapterAddress = split(serialAdapters[i], ':');
@@ -44,11 +45,8 @@ void cast_broadcast() {
   if (castOver == 2) {
     adapterCount = serialAdapters.length;
   }
-    
+
   for (int adapter = 0; adapter < adapterCount; adapter++) {
-    // Is panel connected?
-    //if (netAdapterClients[adapter].ip() == null) continue;
-    
     // Each panel connected to adapter
     for (int i = 0; i < panels.length; i++) {
       // Is this panel connected to this adapter
@@ -57,39 +55,37 @@ void cast_broadcast() {
       // Only cast if panels data has changed
       // @TODO
 
-      // Send data
-      
+      // Send frame data
       cast_write(adapter, 0x80);
       cast_write(adapter, (config_video_sync) ? 0x84 : 0x83);
       cast_write(adapter, panels[i].id);
       cast_write(adapter, panels[i].buffer);
       cast_write(adapter, 0x8F);
-      
-      //adaptersNet[adapter].write(0x80);
-      //adaptersNet[adapter].write((config_video_sync) ? 0x84 : 0x83);
-      //adaptersNet[adapter].write(panels[i].id);
-      //adaptersNet[adapter].write(panels[i].buffer);
-      //adaptersNet[adapter].write(0x8F);
     }
   }
 
   // Video sync update
+  // This instruction tells all panels to refresh
   if (config_video_sync) {
     for (int adapter = 0; adapter < adapterCount; adapter++) {
-      // If panel is not connected
-      //if (netAdapterClients[adapter].ip() == null) break;
-
       // Refresh all panels command
       cast_write(adapter, 0x80);
       cast_write(adapter, 0x82);
       cast_write(adapter, 0x8F);
-    //  adaptersNet[adapter].write(0x80);
-    //  adaptersNet[adapter].write(0x82);
-    //  adaptersNet[adapter].write(0x8F);
     }
   }
 }
 
+
+/**
+ * Cast write
+ *
+ * Push data out over adapter.
+ *
+ * @param {int} adapter          | Adapter ID {netAdapters/serialAdapters} 
+ * @param {int/byte/byte[]} data | Frame data
+ * @return {void}
+ */
 void cast_write(int adapter, int data) {
   if (castOver == 1) {
     // Network adapter

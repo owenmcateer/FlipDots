@@ -1,6 +1,8 @@
+/**
+ * Example animations
+ */
 int scene = 0;
 void example_anim() {
-  
   // Styles
   virtualDisplay.background(0);
   virtualDisplay.stroke(255);
@@ -78,7 +80,7 @@ void example_anim() {
   }
   
   
-  // Update scene
+  // Update scene ever 10s
   if (frameCount % 300 == 0) {
     scene++;
     if (scene > 3) scene = 0;

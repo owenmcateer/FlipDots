@@ -1,4 +1,13 @@
-
+/**
+ * Panel class
+ * 
+ * This class holds the panels and processed their data to be cast.
+ *
+ * @param {int} adapterId | Ref to adapter index ID in {netAdapters/serialAdapters}
+ * @param {int} panelNum  | Panel ID (set on the 3-pin DIP switch)
+ * @param {int} offsetX   | X-position in total display
+ * @param {int} offsetY   | Y-position in total display
+ */
 class Panel {
   int adapter;
   int id;
@@ -7,6 +16,7 @@ class Panel {
   int y;
   byte[] buffer = new byte[28];
     
+  // Create new panel
   Panel(int adapterId, int panelNum, int offsetX, int offsetY) {
     adapter = adapterId;
     id = panelNum;
@@ -17,6 +27,7 @@ class Panel {
     }
   }
   
+  // Process this panels frame data
   void process() {
     int offset = y * config_canvasW + x;
     
@@ -35,4 +46,13 @@ class Panel {
     }
   }
   
+  // Return X
+  int x() {
+    return this.x;
+  }
+  
+  // Return Y
+  int y() {
+    return this.y;
+  }
 }

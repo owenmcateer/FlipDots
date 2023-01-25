@@ -1,15 +1,21 @@
-
+/**
+ * UI
+ *
+ * Useful for debugging and FlipDot simulator.
+ */
 float ui_dot_size;
-
 void ui_setup() {
   // Calc dot size
   ui_dot_size = min(
     (width - (border * 2.0)) / config_canvasW,
     (height - (border * 2.0)) / config_canvasH
-  );
-  
+  ); 
 }
 
+
+/**
+ * Render UI to Processing window
+ */
 void ui_render() {
   fill(255);
   textSize(24);
@@ -54,6 +60,10 @@ void ui_render() {
   }
 }
 
+
+/**
+ * Processing virtual canvas to simulation display
+ */
 void ui_simulate() {
   translate(border, border);
   ellipseMode(CORNER);

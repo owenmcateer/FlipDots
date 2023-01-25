@@ -1,8 +1,20 @@
 /**
- * FlipDot
+ * FlipDot Controller
  *
+ * This Processing sketch is to control FlipDot panels from AlfaZeta.
+ * It uses a virtual display you can draw and animate on that then gets cast to your FlipDot display panels.
+ *
+ * If you don't have a FlipDot display you can still use this software as a FlipDot simulator. Just set `config_cast = false`
+ * 
  * @author Owen McAteer
  * @url https://github.com/owenmcateer/FlipDots
+ * @socials https://twitter.com/motus_art
+ * @socials https://instagram.com/motus_art
+ * 
+ * Required libraries
+ * - processing.net | Processing foundation
+ * - processing.serial | Processing foundation
+ * - websockets | Lasse Steenbock Vestergaard | (Only for realtime Crypo feed example)
  */
 void setup() {
   size(1080, 960, P2D);
@@ -20,6 +32,9 @@ void setup() {
 }
 
 
+/**
+ * Draw tick
+ */
 void draw() {
   background(59);
   

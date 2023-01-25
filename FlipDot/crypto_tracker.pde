@@ -7,13 +7,18 @@ ArrayList<Cryptocurrency> coins = new ArrayList<Cryptocurrency>();
 ArrayList<String> tokens = new ArrayList<String>();
 static final DecimalFormat dfZero = new DecimalFormat("0.00");
 
+
+/**
+ * Realtime crypto feed
+ *
+ * An example of reading and outputting a realtime WebSockets api feed.
+ */
 void crypto_ticker_setup() {
   wsc = new WebsocketClient(this, "wss://ws.kraken.com");
 
   // Tokens
   tokens.add("BTC/EUR");
   tokens.add("ETH/EUR");
-  
   //tokens.add("BCH/USD");
   //tokens.add("LTC/USD");
   //tokens.add("USDT/USD");
@@ -44,7 +49,9 @@ void crypto_ticker_setup() {
   wsc.sendMessage(subMessage);
 }
 
-
+/**
+ * Output realtime data
+ */
 void crypto_ticker() {
   virtualDisplay.background(0);
   virtualDisplay.fill(255);
@@ -60,7 +67,10 @@ void crypto_ticker() {
 }
 
 
-// Docs: // https://docs.kraken.com/websockets/#message-ticker
+/**
+ * Read and parse data
+ * @see https://docs.kraken.com/websockets/#message-ticker
+ */
 void webSocketEvent(String msg){
   if (msg.charAt(0) == '[') {
     // Update array
@@ -92,6 +102,9 @@ void webSocketEvent(String msg){
 }
 
 
+/**
+ * Cryptocurrency class for each sub 
+ */
 class Cryptocurrency {
   int id;
   String symbol;
@@ -115,7 +128,9 @@ class Cryptocurrency {
   }
 }
 
-// Find coin by Id
+/**
+ * Find coin by Id
+ */
 public Cryptocurrency findCoinById(int id) {
   for (Cryptocurrency coin : coins) {
     if (coin.getId() == id) {
