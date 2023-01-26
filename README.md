@@ -46,7 +46,7 @@ Each 28x14 panel is made up of two 7x28 panels on one board, each with their con
 
 Each controller has two DIP switches that need to be set. **3-pin Baud-rate** and **8-pin Panel address**
 
-![FlipDot DIP pins](docs/DIP-pins.png)
+![FlipDot DIP pins](./assets/DIP-pins.png)
 
 #### Baud-rate (3-pin DIP)
 
