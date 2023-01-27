@@ -2,18 +2,21 @@
 
 This repo contains a [Processing](https://processing.org/) sketch to control FlipDot panels from [AlfaZeta](https://flipdots.com). It uses a virtual display you can draw and animate on that then gets cast to your FlipDot display panels.
 
+![FlipDot Controller simulator](./assets/FlipDot-controller.gif)
+
 *Note:* if you don't have a FlipDot display you can still use this software as a FlipDot simulator.
 
 - For the JavaScript version see [CastCanvas](./CastCanvas/)
 - For the FlipDigit library [see this repo](https://github.com/owenmcateer/FlipDigits)
 
-https://user-images.githubusercontent.com/1763300/214524873-d32401c9-916a-4d84-ae42-95b464082fdb.mp4
 
 ## What are FlipDot displays?
 
 Flip-dots or Flip-disc, are made of small disks with a permanent magnetic that physically flip back and forth revealing one side or the other. Powered by a small electromagnetic to flip it retains its state even after power is disconnected. Click here if you’d like to [know more](https://flipdots.com/en/electromagnetic-flip-disc-technology-how-it-works/).
 
 The AlfaZeta XY5 FlipDot display includes its own controller board that communicates over a RS485 serial connection using its own protocol. This repo simplifies connecting and streaming images to the FlipDot display.
+
+https://user-images.githubusercontent.com/1763300/214524873-d32401c9-916a-4d84-ae42-95b464082fdb.mp4
 
 
 ## Hardware requirements
