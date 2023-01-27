@@ -17,7 +17,7 @@
  * - websockets | Lasse Steenbock Vestergaard | (Only for realtime Crypo feed example)
  */
 void setup() {
-  size(1080, 960, P2D);
+  size(1080, 720, P2D);
   frameRate(config_fps);
   colorMode(RGB, 255, 255, 255, 1);
   
@@ -47,7 +47,7 @@ void draw() {
   virtual3D.stroke(255);
   virtual3D.strokeWeight(2);
   virtual3D.noFill();
-  virtual3D.box(15);
+  virtual3D.box(11);
   virtual3D.endDraw();
   // End 3D test
   

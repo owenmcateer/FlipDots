@@ -7,14 +7,14 @@ void example_anim() {
   virtualDisplay.background(0);
   virtualDisplay.stroke(255);
   virtualDisplay.noFill();
-  
+
   /**
    * 3D cube
    */
   if (scene == 0) {
     virtualDisplay.image(virtual3D, 0, 0, virtual3D.width, virtual3D.height);
   }
-  
+
   /**
    * Spinning lines
    */
@@ -25,7 +25,7 @@ void example_anim() {
       virtualDisplay.line(-virtualDisplay.width, 0, virtualDisplay.width, 0);
     }
   }
-  
+
   /**
    * Square tunnel
    */
@@ -42,7 +42,7 @@ void example_anim() {
       virtualDisplay.rect(0, 0, s, s);
     }
   }
-  
+
   /**
    * Clouds animation
    */
@@ -54,7 +54,7 @@ void example_anim() {
     float speedY = 0.005;
     float speedZ = 0.002;
     float noiseLevel = 2.0;
-  
+
     virtualDisplay.loadPixels();
     for (int i = 0; i < virtualDisplay.pixels.length; i++) {
       float x = (i / 1) % virtualDisplay.width;
@@ -78,8 +78,8 @@ void example_anim() {
     }
     virtualDisplay.updatePixels();
   }
-  
-  
+
+
   // Update scene ever 10s
   if (frameCount % 300 == 0) {
     scene++;
