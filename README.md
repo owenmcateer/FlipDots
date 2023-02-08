@@ -43,7 +43,7 @@ Each 28x14 panel is made up of two 7x28 panels on one board, each with their con
 
 ![FlipDot control board](./assets/FlipDot-controller.png)
 
-- Connect 24V power supply to the 23V DC in screw terminals
+- Connect 24V power supply to the 24V DC in screw terminals
 - Connect RS485 +/- with a JR11 plug or the screw terminals
 
 ### 2) DIP switches
