@@ -82,7 +82,7 @@ This is the address ID used when pushing out the image data, each panel listens 
 
 ### 3) Serial data
 
-To send frame data from your computer to the display you can do so over ETH or USB. For small display USB is fine but larger display will require an ETH solution.  
+To send frame data from your computer to the display you can do so over ETH or USB. For small displays USB is fine but larger displays will require an ETH solution.  
 See suggested serial products above.
 
 #### ETH convertor
@@ -120,11 +120,11 @@ Add a config line for each FlipDot panel you have:
 
 Finally set the number of panels you have in the following line: `Panel[] panels = new Panel[2];`
 
-See [config.pde](./FlipDot/config.pde) for more example and layouts.
+See [config.pde](./FlipDot/config.pde) for more examples and layouts.
 
 ### 5) Coding animations
 
-Now you can draw and animation whatever you want! Everything gets drawn to `virtualDisplay`, I recommend looking at [example_anim.pde](./FlipDot/example_anim.pde) and [example_blips.pde](./FlipDot/example_blips.pde) for some example on coding animations.
+Now you can draw and animate whatever you want! Everything gets drawn to `virtualDisplay`, I recommend looking at [example_anim.pde](./FlipDot/example_anim.pde) and [example_blips.pde](./FlipDot/example_blips.pde) for some examples of coding animations.
 
 Don't forget to share your creations with me @motus_art on [IG](https://instagram.com/motus_art)/[TW](https://twitter.com/motus_art)
 
