@@ -74,6 +74,7 @@ Serial[] adaptersSerial = new Serial[serialAdapters.length];
 
 // Assets
 PFont FlipDotFont;
+PFont FlipDotFont_pixel;
 
 // UI
 int border = 40;
@@ -88,7 +89,7 @@ void config_setup() {
   FlipDotFont = createFont("fonts/zxSpectrumStrictCondensed.ttf", 15); // Good all round small font
   //FlipDotFont = createFont("fonts/PressStart2P.ttf", 8); // Stylish but large
   //FlipDotFont = createFont("fonts/PixeloidMono.ttf", 8); // Big and clear font
-  //FlipDotFont = createFont("fonts/m3x6.ttf", 16); // Good general pixel font
+  FlipDotFont_pixel = createFont("fonts/m3x6.ttf", 16); // Good general pixel font
 
   // Setup FlipDot panels
   createPanels();
