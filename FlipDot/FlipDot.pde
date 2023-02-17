@@ -59,6 +59,9 @@ void draw() {
   //example_blips();
   example_anim();
 
+  // Games
+  // games_tetris();
+
   // Crypto ticker
   //crypto_ticker();
 
