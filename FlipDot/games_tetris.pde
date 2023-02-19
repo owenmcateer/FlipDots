@@ -26,8 +26,9 @@ class Tetris {
   int status = 0; // 0 = playing, 1 = game over, 2 = line removing
   float speed = 2.0;
   int scale = 2;
-  int board_width = 14;
+  int board_width = 7;
   int board_height = 14;
+  int board_rotation = 0;
   int[] board;
 
   // Input settings
@@ -285,6 +286,9 @@ class Tetris {
 
   // Draw tick
   void draw() {
+    virtualDisplay.translate(virtualDisplay.width / 2, virtualDisplay.height / 2);
+    virtualDisplay.rotate(this.board_rotation * -HALF_PI);
+    virtualDisplay.translate(virtualDisplay.height / -2, virtualDisplay.width / -2);
     virtualDisplay.background(0);
 
     switch (this.status) {
@@ -310,15 +314,15 @@ class Tetris {
 
     // Draw current tetromino
     for (int i = 0; i < board.length; i++) {
-      int x = i % this.board_width;
-      int y = floor(i / this.board_height);
-      virtualDisplay.fill(round(board[i] * 255));
-      virtualDisplay.rect(
-        x * this.scale,
-        y * this.scale,
-        this.scale,
-        this.scale
-      );
+      if (board[i] > 0) {
+        virtualDisplay.fill(255);
+        virtualDisplay.rect(
+          (i % this.board_width) * this.scale,
+          (i / this.board_width) * this.scale,
+          this.scale,
+          this.scale
+        );
+      }
     }
   }
 
