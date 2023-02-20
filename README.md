@@ -128,5 +128,16 @@ Now you can draw and animate whatever you want! Everything gets drawn to `virtua
 
 Don't forget to share your creations with me @motus_art on [IG](https://instagram.com/motus_art)/[TW](https://twitter.com/motus_art)
 
-
 https://user-images.githubusercontent.com/1763300/214339655-2efb0460-cefd-432a-bd86-d43668057a87.mp4
+
+## Games
+
+Any pixel based game will work great on these displays.  While not quite Doom in this resolution, think Snake, Tetris and Pong.
+
+### Tetris
+
+A fully playable Tetris game on a FlipDot display. You can find the code here: [games_tetris.pde](./FlipDot/games_tetris.pde)  
+
+https://user-images.githubusercontent.com/1763300/220141220-da981003-57d3-4386-afc8-1956685caede.mp4
+
+
