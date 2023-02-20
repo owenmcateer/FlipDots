@@ -125,7 +125,7 @@ class Tetris {
   void tick_game_over() {
     this.draw_board();
     virtualDisplay.fill(255);
-    virtualDisplay.rect(0, virtualDisplay.height - (this.anim_progress * virtualDisplay.height * 2.0), virtualDisplay.width, virtualDisplay.height);
+    virtualDisplay.rect(0, this.board_height * this.scale - (this.anim_progress * this.board_height * this.scale * 2.0), this.board_width * this.scale, this.board_height * this.scale);
     if (this.anim_progress > 0.5) {
       this.board = new int[this.board_width * this.board_height];
 
@@ -133,13 +133,13 @@ class Tetris {
       virtualDisplay.fill(255);
       virtualDisplay.textFont(FlipDotFont_pixel);
       virtualDisplay.textLeading(7);
-      virtualDisplay.textAlign(CENTER);
-      virtualDisplay.text("Game\nOver", virtualDisplay.width / 2 + 1, virtualDisplay.height / 4.0);
+      virtualDisplay.textAlign(CENTER, CENTER);
+      virtualDisplay.text("Game\nOver", this.board_width * this.scale * 0.5, this.board_height * this.scale * 0.25);
 
       // Restart text
       if (frameCount % 15 < 11) {
         virtualDisplay.textAlign(CENTER, CENTER);
-        virtualDisplay.text("start", virtualDisplay.width / 2 + 1, virtualDisplay.height / 1.5);
+        virtualDisplay.text("play", round(this.board_width * this.scale * 0.5), round(this.board_height * this.scale * 0.7));
       }
     }
 
