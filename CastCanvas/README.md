@@ -43,6 +43,6 @@ To make this even easier you can use my [Canvas Cast](https://github.com/owenmca
 1) Run `npm install`
 2) Run `node FlipDots.js` and find your USB-to-RS485 adaptor port address.
 3) Open *FlipDots.js* and in config, enter this port address
-4) Still in *FlipDops.js* edit your panel settings (size & IDs)
+4) Still in *FlipDots.js* edit your panel settings (size & IDs)
 5) Again run `node FlipDots.js` and look for "Serial port opened and ready!"
 6) Now stream image data from [Canvas Cast](https://github.com/owenmcateer/canvas-cast)

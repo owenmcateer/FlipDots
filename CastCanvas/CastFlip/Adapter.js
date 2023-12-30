@@ -28,7 +28,7 @@ class Adapter {
 
 
   /**
-   * Connect to WS deivce
+   * Connect to WS device
    */
   connect() {
     // Open WebSocket connection
