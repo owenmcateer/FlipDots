@@ -26,7 +26,7 @@ The AlfaZeta XY5 FlipDot display includes its own controller board that communic
 
 - FlipDot panel from [AlfaZeta](https://flipdots.com)
 - 24V PSU (1A per panel)
-- RS285 converter
+- RS485 converter
 - - ETH: [ETH-UKW485SR140](https://www.sklep.uk-system.pl/konwertery-eth-ukw485sr140-z-4-portami-szeregowymi-rs485-p-41.html) (best for high framerates)
 - - ETH: [Waveshare](https://www.waveshare.com/product/iot-communication/wired-comm-converter/ethernet-to-rs232-rs485.htm)
 - - ETH: [PUSR](https://www.pusr.com/products/serial-to-ethernet-converters.html)

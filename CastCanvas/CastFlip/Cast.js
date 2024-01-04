@@ -5,11 +5,11 @@ class Cast {
     this.blackWhiteSplit = settings.blackWhiteSplit;
 
     this.adapters = [];
-    this.createApapters(settings.adapters);
+    this.createAdapters(settings.adapters);
   }
 
 
-  createApapters(adapters) {
+  createAdapters(adapters) {
     adapters.forEach((adapter) => {
       this.adapters.push(new Adapter(adapter, this.canvas));
     });
@@ -43,7 +43,7 @@ class Cast {
 
 
   /**
-   * Conver image to Black&White
+   * Convert image to Black&White
    * @param {Array} data RGB image buffer array
    * @return {Array} Black & White image array (range: 0-1)
    */
