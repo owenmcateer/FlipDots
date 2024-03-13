@@ -11,6 +11,12 @@ This repo contains a [Processing](https://processing.org/) sketch to control Fli
 
 https://user-images.githubusercontent.com/1763300/214524873-d32401c9-916a-4d84-ae42-95b464082fdb.mp4
 
+### More examples
+- [Cluster growth](assets/examples/example_cluster_growth.gif)
+- [Blips](assets/examples/example_blips.gif)
+- [Clouds](assets/examples/example_clouds.gif)
+- [Square tunnel](assets/examples/example_squares.gif)
+- [3D Cube](assets/examples/example_3d_cube.gif)
 
 ## What are FlipDot displays?
 
