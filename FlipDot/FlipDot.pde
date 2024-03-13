@@ -28,7 +28,6 @@ void setup() {
   ui_setup();
 
   // Scene setup
-  //crypto_ticker_setup();
 }
 
 
@@ -58,12 +57,9 @@ void draw() {
   // Blips
   //example_blips();
   example_anim();
-
+ 
   // Games
   // games_tetris();
-
-  // Crypto ticker
-  //crypto_ticker();
 
   // End drawing
   virtualDisplay.endDraw();
