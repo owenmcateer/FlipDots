@@ -51,7 +51,7 @@ boolean config_show_simulator = true;
 int castOver = 1;
 
 // Panels
-Panel[] panels = new Panel[2];
+Panel[] panels = new Panel[4];
 
 // Network device
 // IP address:port
@@ -109,19 +109,20 @@ void config_setup() {
  * You can use the example layouts below or create your own.
  */
 void createPanels() {
-  // Single 28x14 panel
-  panels[0] = new Panel(0, 1, 0, 0);
+  /**
+   * Single 28x14 panel
+   *
   panels[1] = new Panel(0, 2, 0, 7);
+   */
 
   /**
    * Square display
    * Made up of 4 stacked panels
-   *
+   */
   panels[0] = new Panel(0, 1, 0, 0);
   panels[1] = new Panel(0, 2, 0, 7);
   panels[2] = new Panel(0, 3, 0, 14);
   panels[3] = new Panel(0, 4, 0, 21);
-   */
 
   /**
    * Large sqaure

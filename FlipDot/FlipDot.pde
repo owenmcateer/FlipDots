@@ -16,6 +16,8 @@
  * - processing.serial | Processing foundation
  * - websockets | Lasse Steenbock Vestergaard | (Only for realtime Crypo feed example)
  */
+ClusterGrowth cluster_growth;
+
 void setup() {
   size(1080, 720, P2D);
   frameRate(config_fps);
@@ -28,6 +30,7 @@ void setup() {
   ui_setup();
 
   // Scene setup
+  cluster_growth = new ClusterGrowth();
 }
 
 
@@ -46,7 +49,7 @@ void draw() {
   virtual3D.stroke(255);
   virtual3D.strokeWeight(2);
   virtual3D.noFill();
-  virtual3D.box(11);
+  virtual3D.box(14);
   virtual3D.endDraw();
   // End 3D test
 
@@ -54,12 +57,13 @@ void draw() {
   virtualDisplay.beginDraw();
   virtualDisplay.background(0);
 
-  // Blips
-  //example_blips();
-  example_anim();
- 
+  // Examples
+  //example_blips(); // Blips animation
+  example_anim(); // Animations
+  //cluster_growth.draw(); // Cluster growth
+  
   // Games
-  // games_tetris();
+  //games_tetris();
 
   // End drawing
   virtualDisplay.endDraw();
