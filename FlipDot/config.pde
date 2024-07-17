@@ -37,6 +37,11 @@
  *
  * Boolean config_show_simulator
  *   Show/Hide the UI simulator.
+ *
+ * Boolean config_cast_only_changed
+ *   Enable this setting to only cast panel data if its image has changed.
+ *   This will save network bandwidth and is ideal for slow networks and/or large displays.
+ *   But keep in mind each frame will cast a different amount of data, which could lead to varying frame rates.
  */
 boolean config_cast = false;
 int config_fps = 30;
@@ -44,6 +49,7 @@ int config_canvasW;
 int config_canvasH;
 boolean config_video_sync = true;
 boolean config_show_simulator = true;
+boolean config_cast_only_changed = false;
 
 // Network settings
 //   1 = ETH network

@@ -103,8 +103,6 @@ void ui_simulate() {
     translate(panels[i].x * ui_dot_size, panels[i].y * ui_dot_size);
     
     fill(0);
-    stroke(255, 0, 0);
-    strokeWeight(1);
     noStroke();
     rect(0, 0, 28 * ui_dot_size, 7 * ui_dot_size);
     
