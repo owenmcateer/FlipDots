@@ -52,8 +52,8 @@ void cast_broadcast() {
       // Is this panel connected to this adapter
       if (panels[i].adapter != adapter) continue;
 
-      // Only cast if panels data has changed
-      // @TODO
+      // If enabled and panel image has not changed, skip
+      if (config_cast_only_changed && panels[i].has_changed == false) continue;
 
       // Send frame data
       cast_write(adapter, 0x80);

@@ -103,9 +103,12 @@ void ui_simulate() {
     translate(panels[i].x * ui_dot_size, panels[i].y * ui_dot_size);
     
     fill(0);
-    stroke(255, 0, 0);
-    strokeWeight(1);
-    noStroke();
+    if (config_simulate_changes && panels[i].has_changed) {
+      stroke(255, 0, 0);
+      strokeWeight(1);
+    } else {
+      noStroke();
+    }
     rect(0, 0, 28 * ui_dot_size, 7 * ui_dot_size);
     
     for (int col = 0; col < 28; col++) {
@@ -115,7 +118,6 @@ void ui_simulate() {
         circle(col * ui_dot_size, row * ui_dot_size, ui_dot_size - 2);
       }
     }
-    
     pop();
   }
   pop();
