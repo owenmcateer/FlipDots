@@ -4,7 +4,11 @@
  * Useful for debugging and FlipDot simulator.
  */
 float ui_dot_size;
+long ui_start_time;
 void ui_setup() {
+  // Start time
+  ui_start_time = millis();
+
   // Calc dot size
   float min_ui_space = 300;
   ui_dot_size = min(
@@ -35,8 +39,16 @@ void ui_render() {
   // App stats
   text(config_cast ? "Casting" : "Not casting", ui_offset, 120);
   text(round(frameRate) + " fps (target: " + config_fps + "fps)", ui_offset, 140);
-  text("Runtime: " + secondsToTime(round(frameCount / config_fps)), ui_offset, 160);
-  
+
+  // Calculate runtime
+  long elapsed_time = millis() - ui_start_time;
+  // Format the time as HH:MM:SS
+  int hours = (int) (elapsed_time / (1000 * 60 * 60));
+  int minutes = (int) ((elapsed_time - (hours * 1000 * 60 * 60)) / (1000 * 60));
+  int seconds = (int) ((elapsed_time - (hours * 1000 * 60 * 60) - (minutes * 1000 * 60)) / 1000);
+  String formatted_time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+  text("Runtime: " + formatted_time, ui_offset, 160);
+
   // Simulator
   if (config_show_simulator) {
     ui_simulate();
