@@ -8,7 +8,7 @@
  *
  * @author Owen McAteer
  * @url https://github.com/owenmcateer/FlipDots
- * @socials https://twitter.com/motus_art
+ * @socials https://x.com/motus_art
  * @socials https://instagram.com/motus_art
  *
  * Required libraries

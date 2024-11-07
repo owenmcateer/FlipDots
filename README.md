@@ -132,7 +132,7 @@ See [config.pde](./FlipDot/config.pde) for more examples and layouts.
 
 Now you can draw and animate whatever you want! Everything gets drawn to `virtualDisplay`, I recommend looking at [example_anim.pde](./FlipDot/example_anim.pde) and [example_blips.pde](./FlipDot/example_blips.pde) for some examples of coding animations.
 
-Don't forget to share your creations with me @motus_art on [IG](https://instagram.com/motus_art)/[TW](https://twitter.com/motus_art)
+Don't forget to share your creations with me @motus_art on [IG](https://instagram.com/motus_art)/[TW](https://x.com/motus_art)
 
 https://user-images.githubusercontent.com/1763300/214339655-2efb0460-cefd-432a-bd86-d43668057a87.mp4
 
