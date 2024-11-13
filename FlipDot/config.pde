@@ -135,7 +135,7 @@ void createPanels() {
   panels[3] = new Panel(0, 4, 0, 21);
 
   /**
-   * Large sqaure
+   * Large square
    * 2x8 panels
    *
   panels[0]  = new Panel(0, 1, 0,  0);
