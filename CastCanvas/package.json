@@ -6,7 +6,7 @@
   "main": "FlipDots.js",
   "dependencies": {
     "serialport": "^9.0.0",
-    "ws": "^7.5.10"
+    "ws": "^7.5.11"
   },
   "repository": {
     "type": "git",
